@@ -6,9 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import static org.hamcrest.CoreMatchers.*;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import server.CarbonServer;
@@ -18,38 +16,30 @@ import server.CarbonServer;
  * @author Simon
  */
 public class StaticFileHandlerTest {
-    
+
+    CarbonServer server;
+
     public StaticFileHandlerTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
+        server = new CarbonServer();
+        server.start();
     }
-    
+
     @After
     public void tearDown() {
+        server.stop();
     }
 
     @Test
-    public void testSomeMethod() throws MalformedURLException, IOException {
-        CarbonServer server = new CarbonServer();
-        server.start();
-        
+    public void staticFileServiceTest() throws MalformedURLException, IOException {
         HttpURLConnection client = (HttpURLConnection) new URL("http://127.0.0.1:3000/").openConnection();
-        
-        server.stop();
-        
         int response = client.getResponseCode();
         int expectedOKResponse = 200;
+        
         assertThat(response, is(expectedOKResponse));
     }
-    
+
 }
