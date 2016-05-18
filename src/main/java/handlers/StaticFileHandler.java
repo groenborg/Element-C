@@ -14,15 +14,21 @@ import java.io.OutputStream;
  */
 public class StaticFileHandler implements HttpHandler {
 
+    private ResponseBuilder response;
+    private String rootPath = "";
+
+    public StaticFileHandler(String rootPath) {
+        this.rootPath = rootPath;
+    }
+
     @Override
     public void handle(HttpExchange he) throws IOException {
-
         String url = he.getRequestURI().getPath();
-
-        String s = "sd";
-
+        response = new ResponseBuilder(rootPath);
+        
+        
+        
         Headers h = he.getResponseHeaders();
-
         h.add("Content-Type", "text/plain");
         h.add("charset", "utf-8");
         he.sendResponseHeaders(200, 0);

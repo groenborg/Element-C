@@ -49,7 +49,6 @@ public class StaticFileHandlerTest {
         assertThat(response, is(expectedOKResponse));
     }
 
-
     public void FileHandlerCode404Test() throws MalformedURLException, IOException {
         HttpURLConnection client = (HttpURLConnection) new URL(path).openConnection();
         int response = client.getResponseCode();
@@ -58,4 +57,6 @@ public class StaticFileHandlerTest {
         assertThat(response, is(expectedNotFoundCode));
     }
 
+    
+    
 }

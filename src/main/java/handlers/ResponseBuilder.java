@@ -1,6 +1,9 @@
 package handlers;
 
+import com.sun.net.httpserver.HttpExchange;
 import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  *
@@ -17,7 +20,7 @@ public class ResponseBuilder {
     private String rootPath = "";
 
     public ResponseBuilder() {
-        
+
     }
 
     public ResponseBuilder(String root) {
@@ -56,7 +59,10 @@ public class ResponseBuilder {
 
     }
 
-    
-    
-    
+    public void sendResponse(HttpExchange he, int statusCode, byte[] bytesToSend) throws IOException {
+        he.sendResponseHeaders(statusCode, 0);
+        try (OutputStream responseBody = he.getResponseBody()) {
+            responseBody.write(bytesToSend, 0, bytesToSend.length);
+        }
+    }
 }

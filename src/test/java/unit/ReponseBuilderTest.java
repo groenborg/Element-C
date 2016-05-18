@@ -24,12 +24,12 @@ import org.junit.runners.Parameterized.Parameters;
 public class ReponseBuilderTest {
 
     @RunWith(Parameterized.class)
-    public static class ResponseBuilderParamaterTest {
+    public static class ResponseBuilderMimeTest {
 
         private final String fileExtension;
         private final String mimeType;
 
-        public ResponseBuilderParamaterTest(String fileExtension, String mimeType) {
+        public ResponseBuilderMimeTest(String fileExtension, String mimeType) {
             this.fileExtension = fileExtension;
             this.mimeType = mimeType;
         }
@@ -59,18 +59,14 @@ public class ReponseBuilderTest {
 
     }
 
-    public static class ResponseBuilderFileTest {
+    public static class ResponseBuilderSendTest {
 
-        @BeforeClass
-        public static void setUpClass() {
-        }
-
-        @AfterClass
-        public static void tearDownClass() {
-        }
+        private ResponseBuilder response;
+        private String testRootPath = "testfiles/";
 
         @Before
         public void setUp() {
+            response = new ResponseBuilder(testRootPath);
         }
 
         @After
@@ -79,24 +75,15 @@ public class ReponseBuilderTest {
 
         @Test
         public void fileShouldReturnNull() {
-            String root = "testfiles/";
-            ResponseBuilder response = new ResponseBuilder(root);
             File file = response.getFile("index.pascal");
-            File f = response.getFile("index.html");
-            System.out.println(f);
-            
             assertNull(file);
         }
 
         @Test
         public void fileShouldReturnIndexHtml() {
-            String root = "testfiles/";
-            ResponseBuilder builder = new ResponseBuilder(root);
-            File file = builder.getFile("index.html");
-
+            File file = response.getFile("index.html");
             assertNotNull(file);
         }
-
     }
 
 }
