@@ -1,5 +1,7 @@
 package handlers;
 
+import java.io.File;
+
 /**
  *
  * @author Simon
@@ -12,9 +14,23 @@ public class ResponseBuilder {
     public final static String MIME_CSS = "text/css";
     public final static String MIME_PLAIN = "text/plain";
 
-    public String getFile() {
+    private String rootPath = "";
 
-        return "";
+    public ResponseBuilder() {
+        
+    }
+
+    public ResponseBuilder(String root) {
+        super();
+        rootPath = root;
+    }
+
+    public File getFile(String fileName) {
+        File file = new File(rootPath + fileName);
+        if (file.exists()) {
+            return file;
+        }
+        return null;
     }
 
     public String getMimeType(String fileName) {
@@ -40,4 +56,7 @@ public class ResponseBuilder {
 
     }
 
+    
+    
+    
 }

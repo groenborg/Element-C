@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package unit;
 
 import handlers.ResponseBuilder;
+import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Test;
@@ -82,8 +78,23 @@ public class ReponseBuilderTest {
         }
 
         @Test
-        public void testFileRetriever() {
+        public void fileShouldReturnNull() {
+            String root = "testfiles/";
+            ResponseBuilder response = new ResponseBuilder(root);
+            File file = response.getFile("index.pascal");
+            File f = response.getFile("index.html");
+            System.out.println(f);
+            
+            assertNull(file);
+        }
 
+        @Test
+        public void fileShouldReturnIndexHtml() {
+            String root = "testfiles/";
+            ResponseBuilder builder = new ResponseBuilder(root);
+            File file = builder.getFile("index.html");
+
+            assertNotNull(file);
         }
 
     }
