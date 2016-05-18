@@ -66,7 +66,7 @@ public class ReponseBuilderTest {
 
         @Before
         public void setUp() {
-            response = new ResponseBuilder(testRootPath);
+            response = new ResponseBuilder();
         }
 
         @After
@@ -75,13 +75,13 @@ public class ReponseBuilderTest {
 
         @Test
         public void fileShouldReturnNull() {
-            File file = response.getFile("index.pascal");
+            File file = response.getFile(testRootPath + "index.pascal");
             assertNull(file);
         }
 
         @Test
         public void fileShouldReturnIndexHtml() {
-            File file = response.getFile("index.html");
+            File file = response.getFile(testRootPath + "index.html");
             assertNotNull(file);
         }
     }

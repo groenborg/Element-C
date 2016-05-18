@@ -42,21 +42,20 @@ public class StaticFileHandlerTest {
 
     @Test
     public void FileHandlerCode200Test() throws MalformedURLException, IOException {
-        HttpURLConnection client = (HttpURLConnection) new URL(path).openConnection();
+        HttpURLConnection client = (HttpURLConnection) new URL(path + "/testfiles/index.html").openConnection();
         int response = client.getResponseCode();
         int expectedOKResponse = 200;
 
         assertThat(response, is(expectedOKResponse));
     }
 
+    @Test
     public void FileHandlerCode404Test() throws MalformedURLException, IOException {
-        HttpURLConnection client = (HttpURLConnection) new URL(path).openConnection();
+        HttpURLConnection client = (HttpURLConnection) new URL(path + "/ipas.pascal").openConnection();
         int response = client.getResponseCode();
         int expectedNotFoundCode = 404;
 
         assertThat(response, is(expectedNotFoundCode));
     }
 
-    
-    
 }

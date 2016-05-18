@@ -4,7 +4,7 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -24,18 +24,28 @@ public class StaticFileHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange he) throws IOException {
         String url = he.getRequestURI().getPath();
-        response = new ResponseBuilder(rootPath);
-        
-        
-        
-        Headers h = he.getResponseHeaders();
-        h.add("Content-Type", "text/plain");
-        h.add("charset", "utf-8");
-        he.sendResponseHeaders(200, 0);
-        try (OutputStream responseBody = he.getResponseBody()) {
-            responseBody.write(s.getBytes(), 0, s.getBytes().length);
-        }
+        url = url.replace("/public", "");
 
+        response = new ResponseBuilder();
+        File file = response.getFile(rootPath + url);
+
+        System.out.println(url);
+        
+        if (file == null) {
+            System.out.println("null");
+            response.send(he, ResponseBuilder.HTTP_NOT_FOUND, ResponseBuilder.FILE_NOT_FOUND.getBytes());
+        } else {
+
+            byte[] bytesToSend = new byte[(int) file.length()];
+            try (FileInputStream input = new FileInputStream(file);) {
+                input.read(bytesToSend, 0, bytesToSend.length);
+            }
+
+            Headers h = he.getResponseHeaders();
+            h.add("Content-Type", response.getMimeType(url));
+            h.add("charset", "utf-8");
+            response.send(he, ResponseBuilder.HTTP_OK, bytesToSend);
+        }
     }
 
 }

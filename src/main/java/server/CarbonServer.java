@@ -15,11 +15,13 @@ import java.net.InetSocketAddress;
  */
 public class CarbonServer {
 
-    HttpServer server;
-
+    private HttpServer server;
+    private String rootPath;
+    
+    
     public CarbonServer() throws IOException {
         server = HttpServer.create(new InetSocketAddress("127.0.0.1", 3000), 0);
-        server.createContext("/public", new StaticFileHandler());
+        server.createContext("/public", new StaticFileHandler(""));
         server.setExecutor(null);
     }
 

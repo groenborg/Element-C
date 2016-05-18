@@ -17,19 +17,13 @@ public class ResponseBuilder {
     public final static String MIME_CSS = "text/css";
     public final static String MIME_PLAIN = "text/plain";
 
-    private String rootPath = "";
+    public final static String FILE_NOT_FOUND = "404 file not found";
 
-    public ResponseBuilder() {
-
-    }
-
-    public ResponseBuilder(String root) {
-        super();
-        rootPath = root;
-    }
+    public final static int HTTP_NOT_FOUND = 404;
+    public final static int HTTP_OK = 200;
 
     public File getFile(String fileName) {
-        File file = new File(rootPath + fileName);
+        File file = new File(fileName);
         if (file.exists()) {
             return file;
         }
@@ -59,7 +53,7 @@ public class ResponseBuilder {
 
     }
 
-    public void sendResponse(HttpExchange he, int statusCode, byte[] bytesToSend) throws IOException {
+    public void send(HttpExchange he, int statusCode, byte[] bytesToSend) throws IOException {
         he.sendResponseHeaders(statusCode, 0);
         try (OutputStream responseBody = he.getResponseBody()) {
             responseBody.write(bytesToSend, 0, bytesToSend.length);
