@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 import server.CarbonServer;
 
 /**
@@ -17,9 +18,15 @@ import server.CarbonServer;
  */
 public class StaticFileHandlerTest {
 
-    CarbonServer server;
+    private CarbonServer server;
+    private String url;
+    private String path;
+    private int port;
 
     public StaticFileHandlerTest() {
+        url = "http://127.0.0.1:";
+        port = 3000;
+        path = url + port + "/public";
     }
 
     @Before
@@ -34,12 +41,21 @@ public class StaticFileHandlerTest {
     }
 
     @Test
-    public void staticFileServiceTest() throws MalformedURLException, IOException {
-        HttpURLConnection client = (HttpURLConnection) new URL("http://127.0.0.1:3000/").openConnection();
+    public void FileHandlerCode200Test() throws MalformedURLException, IOException {
+        HttpURLConnection client = (HttpURLConnection) new URL(path).openConnection();
         int response = client.getResponseCode();
         int expectedOKResponse = 200;
-        
+
         assertThat(response, is(expectedOKResponse));
+    }
+
+
+    public void FileHandlerCode404Test() throws MalformedURLException, IOException {
+        HttpURLConnection client = (HttpURLConnection) new URL(path).openConnection();
+        int response = client.getResponseCode();
+        int expectedNotFoundCode = 404;
+
+        assertThat(response, is(expectedNotFoundCode));
     }
 
 }
