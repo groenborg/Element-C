@@ -22,7 +22,7 @@ public class CarbonServer implements IServer {
         this.port = port;
 
         server = HttpServer.create(new InetSocketAddress(this.address, this.port), 0);
-        server.createContext("/public", new StaticFileHandler(this.rootPath));
+        server.createContext("/", new StaticFileHandler(this.rootPath));
         server.setExecutor(null);
     }
 

@@ -1,0 +1,19 @@
+{
+  "name": "Carbon",
+  "homepage": "https://github.com/groenborg/Element-C",
+  "authors": [
+    "groenborg <groenborg27@gmail.com>"
+  ],
+  "description": "project for continious integration",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ]
+}

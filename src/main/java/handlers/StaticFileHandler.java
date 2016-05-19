@@ -27,7 +27,7 @@ public class StaticFileHandler implements HttpHandler {
 
         //removes the handler absolute path
         String url = he.getRequestURI().getPath();
-        url = url.replace("/public/", "");
+        
 
         response = new ResponseBuilder();
         File file = response.getFile(rootPath + url);

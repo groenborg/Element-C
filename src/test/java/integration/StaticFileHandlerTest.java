@@ -19,7 +19,7 @@ import server.CarbonServer;
 public class StaticFileHandlerTest {
 
     private CarbonServer server;
-    private String url = "http://127.0.0.1:3000/public/";
+    private String url = "http://127.0.0.1:3000";
     private String rootPath = "testfiles/";
     private String address = "localhost";
     private int port = 3000;
