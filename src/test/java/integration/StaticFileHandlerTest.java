@@ -19,17 +19,18 @@ import server.CarbonServer;
 public class StaticFileHandlerTest {
 
     private CarbonServer server;
-    private String url;
-    private String path;
-    private int port;
+    private String url = "http://127.0.0.1:3000/public/";
+    private String rootPath = "testfiles/";
+    private String address = "localhost";
+    private int port = 3000;
 
     public StaticFileHandlerTest() {
-        url = "http://127.0.0.1:3000";
+
     }
 
     @Before
     public void setUp() throws IOException {
-        server = new CarbonServer();
+        server = new CarbonServer(rootPath, address, port);
         server.start();
     }
 
@@ -40,7 +41,7 @@ public class StaticFileHandlerTest {
 
     @Test
     public void FileHandlerCode200Test() throws MalformedURLException, IOException {
-        HttpURLConnection client = (HttpURLConnection) new URL(url + "/testfiles/index.html").openConnection();
+        HttpURLConnection client = (HttpURLConnection) new URL(url + "/index.html").openConnection();
         int response = client.getResponseCode();
         int expectedOKResponse = 200;
 

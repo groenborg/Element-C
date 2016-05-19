@@ -24,16 +24,15 @@ public class StaticFileHandler implements HttpHandler {
 
     @Override
     public void handle(HttpExchange he) throws IOException {
+
+        //removes the handler absolute path
         String url = he.getRequestURI().getPath();
-        url = url.replace("/public", "");
-        
-        
+        url = url.replace("/public/", "");
+
         response = new ResponseBuilder();
-        File file = response.getFile(rootPath);
-       
+        File file = response.getFile(rootPath + url);
 
         if (file == null) {
-            
             response.send(he, ResponseBuilder.HTTP_NOT_FOUND, ResponseBuilder.FILE_NOT_FOUND.getBytes());
         } else {
 
