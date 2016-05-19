@@ -5,6 +5,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -25,14 +26,14 @@ public class StaticFileHandler implements HttpHandler {
     public void handle(HttpExchange he) throws IOException {
         String url = he.getRequestURI().getPath();
         url = url.replace("/public", "");
-
-        response = new ResponseBuilder();
-        File file = response.getFile(rootPath + url);
-
-        System.out.println(url);
         
+        
+        response = new ResponseBuilder();
+        File file = response.getFile(rootPath);
+       
+
         if (file == null) {
-            System.out.println("null");
+            
             response.send(he, ResponseBuilder.HTTP_NOT_FOUND, ResponseBuilder.FILE_NOT_FOUND.getBytes());
         } else {
 

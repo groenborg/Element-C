@@ -1,13 +1,10 @@
 package server;
 
-import com.sun.net.httpserver.Headers;
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import handlers.StaticFileHandler;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.util.Scanner;
 
 /**
  *
@@ -19,9 +16,22 @@ public class CarbonServer {
     private String rootPath;
     
     
+    public static void main(String[] args) throws IOException {
+        
+        CarbonServer s = new CarbonServer();
+        
+        s.start();
+        
+        Scanner sc = new Scanner(System.in);
+        sc.nextLine();
+        s.stop();
+        
+    }
+    
+    
     public CarbonServer() throws IOException {
         server = HttpServer.create(new InetSocketAddress("127.0.0.1", 3000), 0);
-        server.createContext("/public", new StaticFileHandler(""));
+        server.createContext("/public", new StaticFileHandler("testfiles/"));
         server.setExecutor(null);
     }
 
