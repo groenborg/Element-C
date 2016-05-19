@@ -9,7 +9,7 @@ import java.net.InetSocketAddress;
  *
  * @author Simon
  */
-public class CarbonServer {
+public class CarbonServer implements IServer {
 
     private HttpServer server;
     private String rootPath;
@@ -22,14 +22,16 @@ public class CarbonServer {
         this.port = port;
 
         server = HttpServer.create(new InetSocketAddress(this.address, this.port), 0);
-        server.createContext("/public", new StaticFileHandler("testfiles/"));
+        server.createContext("/public", new StaticFileHandler(this.rootPath));
         server.setExecutor(null);
     }
 
+    @Override
     public void start() {
         server.start();
     }
 
+    @Override
     public void stop() {
         server.stop(1);
     }
