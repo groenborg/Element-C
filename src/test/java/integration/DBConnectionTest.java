@@ -18,8 +18,6 @@ public class DBConnectionTest {
 
     /**
      * This test uses different urls based on the environment
-     *
-     *
      */
     private Connection con;
     private IDBConnection retriever;
