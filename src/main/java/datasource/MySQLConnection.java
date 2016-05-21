@@ -8,24 +8,29 @@ import java.sql.SQLException;
  *
  * @author Simon
  */
-public class MySQLConnection implements IDBConnection {
+public class MySQLConnection {
 
     public final static String MYSQL_DIALECT = "com.mysql.cj.jdbc.Driver";
-    private Connection dbConnection;
+    private static Connection dbConnection;
 
-    @Override
-    public Connection getConnection(String url, String username, String password) {
-        try {
-            dbConnection = DriverManager.getConnection(url, username, password);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-            return null;
+    private MySQLConnection() {
+
+    }
+
+    public static Connection getConnection(String url, String username, String password) {
+
+        if (dbConnection == null) {
+            try {
+                dbConnection = DriverManager.getConnection(url, username, password);
+            } catch (SQLException ex) {
+                System.out.println(ex);
+                return null;
+            }
         }
         return dbConnection;
     }
 
-    @Override
-    public void releaseConnection() {
+    public static void releaseConnection() {
         try {
             dbConnection.close();
         } catch (SQLException ex) {

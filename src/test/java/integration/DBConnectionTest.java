@@ -1,6 +1,5 @@
 package integration;
 
-import datasource.IDBConnection;
 import datasource.MySQLConnection;
 import java.sql.Connection;
 import org.junit.After;
@@ -20,7 +19,6 @@ public class DBConnectionTest {
      * This test uses different urls based on the environment
      */
     private Connection con;
-    private IDBConnection retriever;
 
     // IT's a really bad idea to have credentials here
     // don't ever do it! I will probably get scolded for this
@@ -62,17 +60,16 @@ public class DBConnectionTest {
             username = "root";
             password = "root";
         }
-        retriever = new MySQLConnection();
-        con = retriever.getConnection(url, username, password);
     }
 
     @After
     public void tearDown() {
-        retriever.releaseConnection();
+        MySQLConnection.releaseConnection();
     }
 
     @Test
     public void testConnectionNotNull() {
+        con = MySQLConnection.getConnection(url, username, password);
         assertNotNull(con);
     }
 }

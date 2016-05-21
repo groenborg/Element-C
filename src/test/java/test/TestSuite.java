@@ -17,7 +17,11 @@ import org.junit.runners.Suite;
  * @author Simon
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({integration.StaticFileHandlerTest.class, unit.ReponseBuilderTest.class})
+@Suite.SuiteClasses({
+    integration.StaticFileHandlerTest.class,
+    unit.ReponseBuilderTest.class,
+    integration.DBConnectionTest.class
+})
 public class TestSuite {
 
     @BeforeClass
