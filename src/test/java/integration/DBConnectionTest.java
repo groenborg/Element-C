@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import test.Credentials;
 
 /**
  *
@@ -20,8 +21,6 @@ public class DBConnectionTest {
      */
     private Connection con;
 
-    // IT's a really bad idea to have credentials here
-    // don't ever do it! I will probably get scolded for this
     private String url = "";
     private String username = "";
     private String password = "";
@@ -40,26 +39,11 @@ public class DBConnectionTest {
 
     @Before
     public void setUp() {
-        boolean ci = false, drone = false;
-        try {
-            ci = System.getenv("CI").equalsIgnoreCase("true");
-            drone = System.getenv("DRONE").equalsIgnoreCase("true");
-        } catch (SecurityException | NullPointerException x) {
-
-        }
-
-        if (ci && drone) {
-            //CI Build
-            url = "jdbc:mysql://127.0.0.1:3306/cidb" + sslFix;
-            username = "root";
-            password = "";
-
-        } else {
-            //local env
-            url = "jdbc:mysql://localhost:8889/cidb" + timeZoneFix;
-            username = "root";
-            password = "root";
-        }
+        Credentials c = new Credentials();
+        url = c.url;
+        username = c.username;
+        password = c.password;
+        url += c.ci == true && c.drone ? sslFix : timeZoneFix;
     }
 
     @After
