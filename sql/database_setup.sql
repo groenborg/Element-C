@@ -1,5 +1,3 @@
-DROP TABLE user;
-
 CREATE TABLE user(
     user_id INTEGER,
     user_name VARCHAR(100),
