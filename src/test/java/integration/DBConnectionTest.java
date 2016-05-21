@@ -32,6 +32,7 @@ public class DBConnectionTest {
 
     // The mysql driver has timezone issues
     private String timeZoneFix = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private String sslFix = "?useSSL=true";
 
     @BeforeClass
     public static void setUpClass() {
@@ -53,7 +54,7 @@ public class DBConnectionTest {
 
         if (ci && drone) {
             //CI Build
-            url = "jdbc:mysql://127.0.0.1:3306/cidb";
+            url = "jdbc:mysql://127.0.0.1:3306/cidb" + sslFix;
             username = "root";
             password = "";
 
