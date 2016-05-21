@@ -10,16 +10,14 @@ import java.sql.SQLException;
  */
 public class MySQLConnection implements IDBConnection {
 
-    public final static String MYSQL_DIALECT = "com.mysql.jdbc.Driver";
+    public final static String MYSQL_DIALECT = "com.mysql.cj.jdbc.Driver";
     private Connection dbConnection;
 
     @Override
     public Connection getConnection(String url, String username, String password) {
         try {
-            Class.forName(MYSQL_DIALECT);
-            
             dbConnection = DriverManager.getConnection(url, username, password);
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return null;
         }
