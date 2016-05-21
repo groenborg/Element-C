@@ -32,7 +32,7 @@ public class DBConnectionTest {
 
     // The mysql driver has timezone issues
     private String timeZoneFix = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    private String sslFix = "?useSSL=true";
+    private String sslFix = "?useSSL=false";
 
     @BeforeClass
     public static void setUpClass() {
