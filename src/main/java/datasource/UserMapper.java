@@ -16,7 +16,7 @@ import model.User;
  *
  * @author Simon
  */
-public class UserMapper {
+public class UserMapper implements IMapper {
 
     private Connection con;
     private ArrayList<User> users;
@@ -39,7 +39,7 @@ public class UserMapper {
         } catch (SQLException e) {
             System.out.println(e);
         }
-        
+
         return users;
     }
 }
