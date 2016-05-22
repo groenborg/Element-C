@@ -33,6 +33,8 @@ public class UserMapper implements IMapper {
             }
         } catch (SQLException e) {
             System.out.println(e);
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
 
         return users;

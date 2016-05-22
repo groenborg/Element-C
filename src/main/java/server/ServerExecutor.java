@@ -10,6 +10,8 @@ import java.util.Scanner;
 public class ServerExecutor {
 
     private CarbonServer server;
+    private String address = "localhost";
+    private int port = 3000;
 
     public static void main(String[] args) {
         ServerExecutor ex = new ServerExecutor();
@@ -17,8 +19,6 @@ public class ServerExecutor {
     }
 
     public void execute() {
-        String address = "localhost";
-        int port = 3000;
 
         try {
             server = new CarbonServer("public/", address, port);
@@ -36,10 +36,13 @@ public class ServerExecutor {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
         while (running) {
-            System.out.println("Ready for input");
+            System.out.println("Commands: kill, status");
             if (scanner.nextLine().equalsIgnoreCase("kill")) {
                 running = false;
                 server.stop();
+            }
+            if (scanner.nextLine().equalsIgnoreCase("status")) {
+                System.out.println("running on: " + address + " port: " + port);
             }
         }
     }
