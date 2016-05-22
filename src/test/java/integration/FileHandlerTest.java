@@ -9,14 +9,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.BeforeClass;
 import server.CarbonServer;
 
 /**
  *
  * @author Simon
  */
-public class StaticFileHandlerTest {
+public class FileHandlerTest {
 
     private CarbonServer server;
     private String url = "http://127.0.0.1:3000";
@@ -24,7 +23,7 @@ public class StaticFileHandlerTest {
     private String address = "localhost";
     private int port = 3000;
 
-    public StaticFileHandlerTest() {
+    public FileHandlerTest() {
 
     }
 

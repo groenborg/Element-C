@@ -18,7 +18,7 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-    integration.StaticFileHandlerTest.class,
+    integration.FileHandlerTest.class,
     integration.DBConnectionTest.class,
     integration.MapperTest.class,
     unit.ReponseBuilderTest.class

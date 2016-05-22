@@ -5,20 +5,18 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.OutputStream;
 
 /**
  *
  * @author Simon
  */
-public class StaticFileHandler implements HttpHandler {
+public class FileHandler implements HttpHandler {
 
     private ResponseBuilder response;
     private String rootPath = "";
 
-    public StaticFileHandler(String rootPath) {
+    public FileHandler(String rootPath) {
         this.rootPath = rootPath;
     }
 

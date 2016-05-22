@@ -1,7 +1,7 @@
 package server;
 
 import com.sun.net.httpserver.HttpServer;
-import handlers.StaticFileHandler;
+import handlers.FileHandler;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
@@ -22,7 +22,7 @@ public class CarbonServer implements IServer {
         this.port = port;
 
         server = HttpServer.create(new InetSocketAddress(this.address, this.port), 0);
-        server.createContext("/", new StaticFileHandler(this.rootPath));
+        server.createContext("/", new FileHandler(this.rootPath));
         server.setExecutor(null);
     }
 

@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import model.User;
 
@@ -8,6 +9,10 @@ import model.User;
  * @author Simon
  */
 public class Controller implements IController {
+
+    public Controller(Connection con) {
+
+    }
 
     @Override
     public ArrayList<User> getAllEntities() {
