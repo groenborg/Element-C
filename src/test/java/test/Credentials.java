@@ -16,6 +16,7 @@ public class Credentials {
     public String url = "";
     public String username = "";
     public String password = "";
+    private String timeZoneFix = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     public boolean ci, drone;
 
@@ -37,7 +38,7 @@ public class Credentials {
 
         } else {
             //local env
-            url = "jdbc:mysql://localhost:8889/cidb";
+            url = "jdbc:mysql://localhost:8889/cidb" + timeZoneFix;
             username = "root";
             password = "root";
         }

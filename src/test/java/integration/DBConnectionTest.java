@@ -26,7 +26,6 @@ public class DBConnectionTest {
     private String password = "";
 
     // The mysql driver has timezone issues
-    private String timeZoneFix = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private String sslFix = "?useSSL=false";
 
     @BeforeClass
@@ -43,7 +42,7 @@ public class DBConnectionTest {
         url = c.url;
         username = c.username;
         password = c.password;
-        url += c.ci == true && c.drone ? sslFix : timeZoneFix;
+        url += c.ci == true && c.drone ? sslFix : "";
     }
 
     @After
