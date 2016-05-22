@@ -17,7 +17,7 @@ public class MySQLConnection {
 
     }
 
-    public static Connection getConnection(String url, String username, String password) {
+    public static Connection getNewConnection(String url, String username, String password) {
 
         if (dbConnection == null) {
             try {
@@ -33,6 +33,7 @@ public class MySQLConnection {
     public static void releaseConnection() {
         try {
             dbConnection.close();
+            dbConnection = null;
         } catch (SQLException ex) {
             System.out.println("No connection to close");
         }

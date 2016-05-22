@@ -52,7 +52,7 @@ public class DBConnectionTest {
 
     @Test
     public void testConnectionNotNull() {
-        con = MySQLConnection.getConnection(url, username, password);
+        con = MySQLConnection.getNewConnection(url, username, password);
         assertNotNull(con);
     }
 }

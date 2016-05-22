@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package integration;
 
 import datasource.MySQLConnection;
 import datasource.UserMapper;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import model.User;
 import static org.hamcrest.Matchers.greaterThan;
@@ -44,7 +38,7 @@ public class MapperTest {
     @Before
     public void setUp() throws Exception {
         Credentials cred = new Credentials();
-        con = MySQLConnection.getConnection(cred.url, cred.username, cred.password);
+        con = MySQLConnection.getNewConnection(cred.url, cred.username, cred.password);
         fixture = new Fixture(con);
         fixture.runScript();
     }
