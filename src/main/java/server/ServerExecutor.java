@@ -39,7 +39,7 @@ public class ServerExecutor {
             server.stop();
         }
 
-        if (!tmp.isEmpty()) {
+        if (tmp.isEmpty()) {
             terminate();
         }
 
