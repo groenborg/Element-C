@@ -1,2 +1,2 @@
 #!/bin/bash
-mvn exec:java -Dexec.mainClass="server.ServerExecutor" &
+mvn exec:java -Dexec.mainClass="server.ServerExecutor" > output.txt &
