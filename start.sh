@@ -1,1 +1,2 @@
-mvn exec:java -Dexec.mainClass="server.ServerExecutor" 
+#!/bin/bash
+mvn exec:java -Dexec.mainClass="server.ServerExecutor" &
