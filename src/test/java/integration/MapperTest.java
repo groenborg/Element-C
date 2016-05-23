@@ -12,8 +12,9 @@ import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import test.Credentials;
+import test.Environment;
 import test.Fixture;
+import static org.junit.Assert.assertThat;
 
 /**
  *
@@ -37,7 +38,7 @@ public class MapperTest {
 
     @Before
     public void setUp() throws Exception {
-        Credentials cred = new Credentials();
+        Environment cred = new Environment();
         con = MySQLConnection.getNewConnection(cred.url, cred.username, cred.password);
         fixture = new Fixture(con);
         fixture.runScript();

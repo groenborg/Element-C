@@ -32,6 +32,10 @@ public class ServerExecutor {
         terminate();
     }
 
+    public void getEnvVariables() {
+
+    }
+
     public void terminate() {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;

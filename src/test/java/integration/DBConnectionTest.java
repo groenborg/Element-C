@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import test.Credentials;
+import test.Environment;
 
 /**
  *
@@ -38,7 +38,7 @@ public class DBConnectionTest {
 
     @Before
     public void setUp() {
-        Credentials c = new Credentials();
+        Environment c = new Environment();
         url = c.url;
         username = c.username;
         password = c.password;

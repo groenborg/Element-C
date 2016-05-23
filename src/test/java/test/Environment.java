@@ -9,7 +9,7 @@ package test;
  *
  * @author Simon
  */
-public class Credentials {
+public class Environment {
 
     // IT's a really bad idea to have credentials here
     // don't ever do it! I will probably get scolded for this   
@@ -20,7 +20,7 @@ public class Credentials {
 
     public boolean ci, drone;
 
-    public Credentials() {
+    public Environment() {
         ci = false;
         drone = false;
         try {
