@@ -39,10 +39,9 @@ public class ServerExecutor {
             server.stop();
         }
 
-        terminate();
-    }
-
-    public void getEnvVariables() {
+        if (!tmp.isEmpty()) {
+            terminate();
+        }
 
     }
 
