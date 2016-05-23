@@ -21,7 +21,7 @@ public class ServerExecutor {
     public void execute() {
         String tmp = "";
         try {
-            tmp = System.getenv("DEV");
+            tmp = System.getenv("PRODUCTION");
 
             if (!tmp.isEmpty()) {
                 address = "0.0.0.0";
