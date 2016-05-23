@@ -19,6 +19,16 @@ public class ServerExecutor {
     }
 
     public void execute() {
+        String tmp = "";
+        try {
+            tmp = System.getenv("DEV");
+
+            if (!tmp.isEmpty()) {
+                address = "0.0.0.0";
+            }
+        } catch (Exception e) {
+
+        }
 
         try {
             server = new CarbonServer("public/", address, port);
