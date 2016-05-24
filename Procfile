@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* ServerExecutor
+web: mvn exec:java -Dexec.mainClass="server.ServerExecutor"
