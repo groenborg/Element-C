@@ -25,6 +25,7 @@ public class ServerExecutor {
 
             if (!tmp.isEmpty()) {
                 address = "0.0.0.0";
+                port = 80;
             }
         } catch (Exception e) {
 
