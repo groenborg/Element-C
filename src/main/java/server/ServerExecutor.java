@@ -24,7 +24,7 @@ public class ServerExecutor {
             tmp = System.getenv("PRODUCTION");
 
             if (!tmp.isEmpty()) {
-                address = "localhost";
+                address = "0.0.0.0";
                 port = Integer.parseInt(System.getenv("PORT"));
             }
         } catch (Exception e) {
