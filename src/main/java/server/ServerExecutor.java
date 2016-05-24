@@ -11,7 +11,7 @@ public class ServerExecutor {
 
     private CarbonServer server;
     private String address = "localhost";
-    private int port = 3000;
+    private int port = 3002;
 
     public static void main(String[] args) {
         ServerExecutor ex = new ServerExecutor();
@@ -19,16 +19,23 @@ public class ServerExecutor {
     }
 
     public void execute() {
+
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread t, Throwable e) {
+                server.stop();
+                System.exit(1);
+            }
+        });
         String tmp = "";
         try {
             tmp = System.getenv("PRODUCTION");
 
-            if (!tmp.isEmpty()) {
+            if (tmp != null) {
                 address = "0.0.0.0";
-                port = Integer.parseInt(System.getenv("PORT"));
             }
         } catch (Exception e) {
-
+            System.out.println(e);
         }
 
         try {
@@ -40,7 +47,7 @@ public class ServerExecutor {
             server.stop();
         }
 
-        if (tmp.isEmpty()) {
+        if (tmp == null) {
             terminate();
         }
 
