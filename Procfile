@@ -1,0 +1,1 @@
+web: mvn exec:java -Dexec.mainClass="server.ServerExecutor" > output.txt &
