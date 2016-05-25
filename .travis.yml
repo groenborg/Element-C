@@ -13,4 +13,4 @@ script:
 - mvn test
 
 before_script:
-  - mysql -e 'create database myapp_test;'
+  - mysql -e 'create database cidb;'
