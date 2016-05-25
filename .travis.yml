@@ -5,4 +5,4 @@ env:
   - CI=TRUE
   - DRONE=TRUE
 script: 
-mvn test
+- mvn test
