@@ -1,8 +1,16 @@
+#.travis.yml
 language: java
 jdk:
   - oraclejdk8
 env:
   - CI=TRUE
   - DRONE=TRUE
+
+services:
+    - mysql
+
 script: 
 - mvn test
+
+before_script:
+  - mysql -e 'create database myapp_test;'
